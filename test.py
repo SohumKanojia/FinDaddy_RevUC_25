@@ -71,7 +71,9 @@ def get_financial_advice(expense_data, income):
             f"User's monthly income: ${income}. Expense breakdown: {expense_data}. "
             "Act as a parent to the user, and provide structured financial advice in a concise format with bullet points, with a witty, parental undertone. "
             "Limit response to 3 key suggestions, avoiding overly long responses. "
-            "Ignore the previous statement if what you are trying to say cannot be simplified into just 3 lines, just tried to help "
+            "Ignore the previous statement if what you are trying to say cannot be simplified into just 3 lines, just try to simplify it."
+            "The user is a college student, so keep the advice relevant to that demographic. "
+            "Maybe ask the user to treat themselves to something if they stay well within their budget, or to cut back on something if they are overspending."
         )
         response = client.models.generate_content(model="gemini-2.0-flash", contents=prompt)
         if response and response.text:
