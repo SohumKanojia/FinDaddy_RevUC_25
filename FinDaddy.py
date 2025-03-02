@@ -5,7 +5,7 @@ import pandas as pd
 from google import genai  # Gemini API
 
 # Initialize Gemini API
-API_KEY = "AIzaSyBXalr25Xvh2LQbzbUEwvIEfA2hvUNbosA"  # Replace with your actual API key
+API_KEY = "MyAPIKey"  # Replace with your actual API key
 if API_KEY:
     client = genai.Client(api_key=API_KEY)
 
