@@ -24,10 +24,15 @@ def input_expense():
     exp_amt = float(input("Enter expense amount: "))
 
     categories = [
-        "Food",
         "College",
+        "Loans",
+        "Bills",
+        "Food",
+        "Transportation",
         "Fun",
-        "Misc"
+        "Shopping",
+        "Subscriptions",
+        "Misc",
     ]
 
     #Infinite loop that breaks once a valid category is chosen by the user.
