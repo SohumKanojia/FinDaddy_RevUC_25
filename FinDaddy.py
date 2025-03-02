@@ -2,9 +2,7 @@ import dash
 from dash import dcc, html, Input, Output, State
 import plotly.express as px
 import pandas as pd
-import numpy as np
 from google import genai  # Gemini API
-import os
 
 # Initialize Gemini API
 API_KEY = "AIzaSyBXalr25Xvh2LQbzbUEwvIEfA2hvUNbosA"  # Replace with your actual API key
@@ -68,7 +66,7 @@ app.layout = html.Div(className="container", children=[
 def get_financial_advice(expense_data, income):
     try:
         prompt = (
-            f"User's monthly income: ${income}. Expense breakdown: {expense_data}. "
+            f"User's monthly income: ${income}. Expense breakdown: {expense_data}. Also display the total expenses by the user so far into this month."
             "Act as a parent to the user, and provide structured financial advice in a concise format with bullet points, with a witty, parental undertone. "
             "Limit response to 3 key suggestions, avoiding overly long responses. "
             "Ignore the previous statement if what you are trying to say cannot be simplified into just 3 lines, just try to simplify it."
@@ -77,7 +75,7 @@ def get_financial_advice(expense_data, income):
         )
         response = client.models.generate_content(model="gemini-2.0-flash", contents=prompt)
         if response and response.text:
-            return '\n'.join(response.text.split('\n')[:5])  # Limit output to 5 lines
+            return '\n'.join(response.text.split('\n')[:10]) #Limits output to 10 lines. 
         return "Unable to retrieve advice."
     except Exception as e:
         return f"Error fetching AI advice: {str(e)}"
@@ -87,7 +85,7 @@ def get_chatbot_response(user_input):
     try:
         response = client.models.generate_content(model="gemini-2.0-flash", contents=user_input)
         if response and response.text:
-            return '\n'.join(response.text.split('\n')[:5])  # Limit chatbot response length
+            return '\n'.join(response.text.split('\n')[:10])  # Limit chatbot response length
         return "I'm not sure how to answer that."
     except Exception as e:
         return f"Error fetching response: {str(e)}"
